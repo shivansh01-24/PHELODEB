@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Philosophy Courtroom — A domain-specific Generative AI debate system simulating philosophical debates in a courtroom format.">
+    <title>AI Philosophy Courtroom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles" class="particles" aria-hidden="true"></div>
+
+    <!-- Entry Overlay -->
+    <div id="entryOverlay" class="entry-overlay">
+        <div class="entry-content">
+            <div class="entry-scales" id="entryScales">⚖</div>
+            <h1 class="entry-title" id="entryTitle">AI Philosophy Courtroom</h1>
+            <p class="entry-subtitle" id="entrySubtitle">Where minds clash and truth prevails</p>
+            <button class="entry-btn" id="enterBtn">Enter the Courtroom</button>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" class="app hidden">
+        <!-- Header -->
+        <header class="header" id="header">
+            <div class="header-left">
+                <span class="header-icon">⚖</span>
+                <h1 class="header-title">Philosophy Courtroom</h1>
+            </div>
+            <div class="header-center">
+                <div class="topic-selector">
+                    <label for="topicSelect" class="topic-label">Case Topic:</label>
+                    <select id="topicSelect" class="topic-select">
+                        <option value="free-will">Free Will vs Determinism</option>
+                        <option value="ethics">Ethics & Morality</option>
+                        <option value="consciousness">Nature of Consciousness</option>
+                        <option value="existentialism">Existentialism</option>
+                        <option value="simulation">Simulation Theory</option>
+                        <option value="epistemology">Epistemology — Limits of Knowledge</option>
+                        <option value="justice">Justice & Fairness</option>
+                        <option value="absurdism">Absurdism & Meaning of Life</option>
+                    </select>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="round-indicator" id="roundIndicator">
+                    <span class="round-label">Round</span>
+                    <span class="round-number" id="roundNumber">1</span>
+                    <span class="round-total">/ 5</span>
+                </div>
+                <button class="btn-reset" id="resetBtn" title="Reset Debate">
+                    <span class="reset-icon">↺</span>
+                    New Case
+                </button>
+            </div>
+        </header>
+
+        <!-- Courtroom Arena -->
+        <main class="courtroom" id="courtroom">
+            <!-- User Lawyer Panel -->
+            <section class="panel panel-user" id="panelUser">
+                <div class="panel-header">
+                    <div class="avatar avatar-user">👤</div>
+                    <div class="panel-info">
+                        <h2 class="panel-name">You — Defense</h2>
+                        <span class="panel-role">Philosophical Advocate</span>
+                    </div>
+                    <div class="score-badge" id="userScoreBadge">
+                        <span class="score-value" id="userScore">0.0</span>
+                        <span class="score-label">Score</span>
+                    </div>
+                </div>
+                <div class="panel-messages" id="userMessages">
+                    <div class="empty-state">
+                        <span class="empty-icon">💭</span>
+                        <p>Present your opening argument below...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Judge Panel (Center) -->
+            <section class="panel panel-judge" id="panelJudge">
+                <div class="panel-header">
+                    <div class="avatar avatar-judge">👨‍⚖️</div>
+                    <div class="panel-info">
+                        <h2 class="panel-name">AI Judge</h2>
+                        <span class="panel-role">Impartial Arbiter</span>
+                    </div>
+                </div>
+                <div class="judge-content" id="judgeContent">
+                    <div class="gavel-container" id="gavelContainer">
+                        <div class="gavel">🔨</div>
+                    </div>
+                    <div class="judge-status" id="judgeStatus">
+                        <p class="judge-waiting">Awaiting arguments from both parties...</p>
+                    </div>
+                    <div class="verdict-card hidden" id="verdictCard">
+                        <div class="verdict-header">
+                            <span class="verdict-icon">📜</span>
+                            <h3>Judge's Verdict</h3>
+                        </div>
+                        <div class="verdict-scores">
+                            <div class="verdict-score-item">
+                                <span class="vs-label">Your Logic</span>
+                                <div class="vs-bar">
+                                    <div class="vs-fill vs-fill-user" id="userLogicBar" style="width: 0%"></div>
+                                </div>
+                                <span class="vs-value" id="userLogicScore">—</span>
+                            </div>
+                            <div class="verdict-score-item">
+                                <span class="vs-label">AI Logic</span>
+                                <div class="vs-bar">
+                                    <div class="vs-fill vs-fill-ai" id="aiLogicBar" style="width: 0%"></div>
+                                </div>
+                                <span class="vs-value" id="aiLogicScore">—</span>
+                            </div>
+                        </div>
+                        <div class="verdict-winner" id="verdictWinner"></div>
+                        <div class="verdict-feedback" id="verdictFeedback"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Lawyer Panel -->
+            <section class="panel panel-ai" id="panelAI">
+                <div class="panel-header">
+                    <div class="avatar avatar-ai">🤖</div>
+                    <div class="panel-info">
+                        <h2 class="panel-name">AI — Prosecution</h2>
+                        <span class="panel-role">Philosophical Challenger</span>
+                    </div>
+                    <div class="score-badge" id="aiScoreBadge">
+                        <span class="score-value" id="aiScore">0.0</span>
+                        <span class="score-label">Score</span>
+                    </div>
+                </div>
+                <div class="panel-messages" id="aiMessages">
+                    <div class="empty-state">
+                        <span class="empty-icon">🧠</span>
+                        <p>Preparing counter-arguments...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Philosopher Selector -->
+        <div class="philosopher-bar" id="philosopherBar">
+            <span class="philosopher-label">Debate Style:</span>
+            <div class="philosopher-chips">
+                <button class="chip chip-active" data-philosopher="balanced" id="chipBalanced">⚖ Balanced</button>
+                <button class="chip" data-philosopher="socratic" id="chipSocratic">🏛 Socratic</button>
+                <button class="chip" data-philosopher="nietzsche" id="chipNietzsche">⚡ Nietzschean</button>
+                <button class="chip" data-philosopher="stoic" id="chipStoic">🗿 Stoic</button>
+                <button class="chip" data-philosopher="existentialist" id="chipExistentialist">🌀 Existentialist</button>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <footer class="input-area" id="inputArea">
+            <div class="input-container">
+                <button class="btn-objection" id="objectionBtn" title="Object to AI's argument!">
+                    <span class="objection-text">⚡ OBJECTION!</span>
+                </button>
+                <div class="input-wrapper">
+                    <input
+                        type="text"
+                        id="argumentInput"
+                        class="argument-input"
+                        placeholder="Present your philosophical argument..."
+                        autocomplete="off"
+                        maxlength="500"
+                    >
+                    <span class="char-count" id="charCount">0/500</span>
+                </div>
+                <button class="btn-send" id="sendBtn" title="Submit Argument">
+                    <span class="send-icon">➤</span>
+                </button>
+            </div>
+            <div class="input-hint">
+                <span id="typingIndicator" class="typing-indicator hidden">
+                    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                    AI is formulating a response...
+                </span>
+                <span id="inputHint" class="hint-text">Press Enter to submit • Choose a topic above to begin</span>
+            </div>
+        </footer>
+
+        <!-- Objection Overlay -->
+        <div class="objection-overlay hidden" id="objectionOverlay">
+            <div class="objection-banner">
+                <span class="objection-main">⚡ OBJECTION!</span>
+                <span class="objection-sub">Challenging the argument!</span>
+            </div>
+        </div>
+
+        <!-- Final Verdict Overlay -->
+        <div class="final-overlay hidden" id="finalOverlay">
+            <div class="final-card">
+                <div class="final-gavel">🔨</div>
+                <h2 class="final-title">Final Verdict</h2>
+                <div class="final-scores" id="finalScores"></div>
+                <div class="final-winner" id="finalWinner"></div>
+                <div class="final-summary" id="finalSummary"></div>
+                <button class="btn-new-case" id="newCaseBtn">⚖ Start New Case</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
