@@ -36,7 +36,7 @@ SCORING CRITERIA (0.0 to 10.0):
 - Counter-argument strength: Does it effectively address the opponent's points?
 - Use of evidence/examples: Are claims supported?
 
-RESPONSE FORMAT — You MUST respond with ONLY valid JSON, nothing else:
+RESPONSE FORMAT - You MUST respond with ONLY valid JSON, nothing else:
 {{
   "user_score": <number 0.0-10.0>,
   "ai_score": <number 0.0-10.0>,
@@ -121,10 +121,10 @@ def get_judge_verdict(user_argument: str, ai_argument: str, topic: str, round_nu
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
         "HTTP-Referer": "http://localhost:5000",
-        "X-Title": "AI Philosophy Courtroom — Judge",
+        "X-Title": "AI Philosophy Courtroom - Judge",
     }
 
-    # Try each model in order (primary → fallbacks)
+    # Try each model in order (primary then fallbacks)
     last_error = None
     for model in AI_MODELS:
         payload = {
@@ -168,7 +168,7 @@ def get_judge_verdict(user_argument: str, ai_argument: str, topic: str, round_nu
             last_error = str(e)
             continue
 
-    # All models failed — return balanced fallback
+    # All models failed - return balanced fallback
     print(f"[Judge] All models failed. Last error: {last_error}")
     return {
         "user_score": 6.0,

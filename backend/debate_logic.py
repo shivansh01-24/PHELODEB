@@ -71,8 +71,8 @@ NON_PHILOSOPHY_KEYWORDS = [
 ]
 
 DOMAIN_REJECTION = (
-    "I appreciate your curiosity, but I am designed exclusively for philosophical debate. "
-    "I cannot assist with that query. Please present a philosophical argument related to our topic."
+    "I can only engage in philosophical debate. "
+    "Please present a philosophical argument related to our topic."
 )
 
 
@@ -120,14 +120,14 @@ CURRENT ROUND: {round_num} of 5
 
 STYLE: {style}
 
-RULES — FOLLOW STRICTLY:
+RULES - FOLLOW STRICTLY:
 1. ONLY discuss philosophical topics. If the user's argument is not philosophical, respond: "{DOMAIN_REJECTION}"
-2. Keep responses SHORT — maximum 3-4 sentences. Be concise and punchy.
-3. Use logical argument structure: claim → reasoning → challenge.
+2. Keep responses SHORT - maximum 3-4 sentences. Be concise and punchy.
+3. Use logical argument structure: claim, reasoning, challenge.
 4. Directly counter the user's specific argument. Do not repeat their points.
 5. End with a pointed question or challenge when possible.
 6. Do NOT use bullet points, numbered lists, or markdown formatting.
-7. Do NOT be agreeable — you are the OPPONENT. Challenge everything.
+7. Do NOT be agreeable - you are the OPPONENT. Challenge everything.
 
 {f'PREVIOUS EXCHANGES:{history_context}' if history_context else ''}
 
@@ -150,7 +150,7 @@ def get_ai_response(argument: str, topic: str, philosopher: str, history: list, 
         "X-Title": "AI Philosophy Courtroom",
     }
     
-    # Try each model in order (primary → fallbacks)
+    # Try each model in order (primary then fallbacks)
     last_error = None
     for model in AI_MODELS:
         payload = {
@@ -200,4 +200,4 @@ def get_ai_response(argument: str, topic: str, philosopher: str, history: list, 
     
     # All models failed
     print(f"[Debate] All models failed. Last error: {last_error}")
-    return "A procedural error has occurred in the court. Please present your argument again."
+    return "The court encountered a technical difficulty. Please try your argument again."
