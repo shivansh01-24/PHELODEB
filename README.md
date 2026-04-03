@@ -17,13 +17,17 @@
 
 ## 📸 Screenshots
 
-<div align="center">
-
 ### Entry Screen
 > Dark cinematic entry with golden typography, floating philosophical symbols, and animated scales of justice.
+<img width="1465" height="787" alt="Screenshot 2026-04-03 104810" src="https://github.com/user-attachments/assets/fb7f3970-bbe5-4c5f-beb8-e27994090ad6" />
 
 ### Courtroom Interface
 > Three-panel layout — Defense (You) | Judge (AI) | Prosecution (AI) — with glassmorphism panels, live scoring, and philosopher style selection.
+<img width="1914" height="886" alt="Screenshot 2026-04-03 104729" src="https://github.com/user-attachments/assets/329d2cfa-8626-47c9-9591-cab226b8ce6b" />
+
+<div align="center">
+
+
 
 </div>
 
