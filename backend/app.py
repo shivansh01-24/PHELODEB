@@ -10,6 +10,8 @@ import traceback
 
 # Add parent directory to path for config imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+# Add local directory to path for sibling imports on Vercel
+sys.path.insert(0, os.path.dirname(__file__))
 
 from debate_logic import get_ai_response, is_philosophy_related, DOMAIN_REJECTION
 from judge import get_judge_verdict
