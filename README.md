@@ -149,11 +149,7 @@ Navigate to **http://127.0.0.1:5000** and click **"Enter the Courtroom"** to beg
 
 This project is pre-configured for serverless deployment on Vercel.
 
-1. Create a GitHub repository and push this code to it.
-2. Go to [Vercel](https://vercel.com/) and import your repository.
-3. In the Vercel project settings, add your Environment Variables:
-   - `OPENROUTER_API_KEY`: Your OpenRouter API key.
-4. Deploy! Vercel will automatically use `vercel.json` to configure the Python backend and static frontend.
+WEBSITE__==https://phelodeb-aar5l4ms6-shivansh01-24s-projects.vercel.app/ 
 
 
 ---
@@ -325,12 +321,6 @@ Results: 10/10 passed
 - **Typography**: Cinzel (headings), Inter (body), Playfair Display (accents)
 - **15+ Animations**: Entry fade, panel slides, gavel strike, score pop, typing dots, particle float, objection flash, verdict reveal
 - **Responsive**: Adapts to tablet and mobile with stacked panels
-
----
-
-## 📜 License
-
-This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
