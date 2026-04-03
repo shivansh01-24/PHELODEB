@@ -2,7 +2,7 @@
    AI Philosophy Courtroom — Frontend Logic
    ============================================================ */
 
-const API_BASE = 'http://127.0.0.1:5000/api';
+const API_BASE = '/api';
 const MAX_ROUNDS = 5;
 
 /* ---------- State ---------- */

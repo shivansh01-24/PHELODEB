@@ -102,8 +102,8 @@ Philosphy-Courtroom/
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/shivansh01-24/Philosphy-Courtroom.git
-cd Philosphy-Courtroom
+git clone https://github.com/shivansh01-24/PHELODEB.git
+cd PHELODEB
 ```
 
 ### Step 2: Install Dependencies
@@ -138,6 +138,19 @@ You'll see:
 ### Step 5: Open in Browser
 
 Navigate to **http://127.0.0.1:5000** and click **"Enter the Courtroom"** to begin.
+
+---
+
+## ☁️ Vercel Deployment
+
+This project is pre-configured for serverless deployment on Vercel.
+
+1. Create a GitHub repository and push this code to it.
+2. Go to [Vercel](https://vercel.com/) and import your repository.
+3. In the Vercel project settings, add your Environment Variables:
+   - `OPENROUTER_API_KEY`: Your OpenRouter API key.
+4. Deploy! Vercel will automatically use `vercel.json` to configure the Python backend and static frontend.
+
 
 ---
 
